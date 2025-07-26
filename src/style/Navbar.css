@@ -1,0 +1,97 @@
+/* Navbar Styles */
+
+.navbar {
+  background-color: #1d4ed8; /* Tailwind blue-700 */
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+  max-width: 1120px; /* Tailwind max-w-7xl */
+  margin: 0 auto;
+  padding: 12px 16px; /* px-4 py-3 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  font-size: 1.5rem; /* text-2xl */
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  color: white;
+  transition: color 0.2s ease;
+}
+
+.navbar-logo:hover {
+  color: #e5e7eb; /* gray-200 */
+}
+
+.nav-links {
+  display: none;
+  gap: 1.5rem; /* space-x-6 */
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #d1d5db; /* gray-300 */
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-cart {
+  color: white;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.nav-cart:hover {
+  color: #e5e7eb; /* gray-200 */
+}
+
+.nav-login {
+  background-color: white;
+  color: #1d4ed8;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.nav-login:hover {
+  background-color: #e0f2fe; /* light blue */
+}
+
+/* SearchBar container in Navbar */
+.nav-search-form {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav-search-form {
+    display: block;
+    margin: 0 20px;
+  }
+}
+
