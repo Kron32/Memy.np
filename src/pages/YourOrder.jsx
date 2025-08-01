@@ -14,10 +14,8 @@ export default function YourOrder() {
       const detailedOrders = await Promise.all(
         savedOrders.map(async (order) => {
           if (order.thumbnail && order.title) {
-            // Order already includes product details
             return order;
           }
-
           try {
             const res = await fetch(`https://dummyjson.com/products/${order.id}`);
             const productData = await res.json();
@@ -51,8 +49,20 @@ export default function YourOrder() {
     }
   };
 
+  const formatCurrency = (num) => {
+    return Number(num).toLocaleString('en-IN', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+  };
+
   const getTotalPrice = () => {
-    return orders.reduce((total, order) => total + (order.total || order.price * order.quantity), 0);
+    const total = orders.reduce((sum, order) => {
+      const price = Number(order.price) || 0;
+      const quantity = Number(order.quantity) || 0;
+      return sum + price * quantity;
+    }, 0);
+    return formatCurrency(total);
   };
 
   if (loading) return <p className="loading">Loading your orders...</p>;
@@ -87,9 +97,9 @@ export default function YourOrder() {
             />
             <div className="order-details">
               <h3>{order.title}</h3>
-              <p>Price: Rs. {order.price}</p>
+              <p>Price: Rs. {formatCurrency(order.price)}</p>
               <p>Quantity: {order.quantity}</p>
-              <p>Total: Rs. {order.total || order.price * order.quantity}</p>
+              <p>Total: Rs. {formatCurrency(Number(order.price) * Number(order.quantity))}</p>
               <p>Payment: {order.paymentMethod}</p>
               <p>Order Date: {new Date(order.date).toLocaleString()}</p>
             </div>

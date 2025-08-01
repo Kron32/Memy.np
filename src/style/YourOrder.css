@@ -1,73 +1,93 @@
 .orders-container {
-  padding: 2rem;
-  max-width: 1000px;
-  margin: auto;
-  font-family: sans-serif;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1e293b;
+}
+
+.orders-container.empty {
+  text-align: center;
+  padding: 50px 20px;
 }
 
 .orders-container h2 {
-  text-align: center;
-  margin-bottom: 1rem;
-  color: #333;
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #334155;
 }
 
 .orders-summary {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 25px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.clear-orders-btn, .back-btn {
+  background-color: #ef4444;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.clear-orders-btn:hover, .back-btn:hover {
+  background-color: #dc2626;
 }
 
 .orders-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 22px;
 }
 
 .order-card {
   display: flex;
-  background: #fff;
+  gap: 20px;
+  padding: 20px;
   border-radius: 10px;
-  padding: 1rem;
-  box-shadow: 0 0 8px rgba(0,0,0,0.08);
-  gap: 1rem;
-  align-items: flex-start;
+  background-color: #f9fafb;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  align-items: center;
 }
 
 .order-image {
   width: 120px;
   height: 120px;
   object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.order-details {
+  flex-grow: 1;
 }
 
 .order-details h3 {
-  margin: 0 0 0.5rem;
-  color: #007bff;
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  color: #1e293b;
 }
 
 .order-details p {
   margin: 4px 0;
-  font-size: 0.95rem;
+  font-size: 16px;
+  color: #475569;
 }
 
-.clear-orders-btn, .back-btn {
-  padding: 0.5rem 1rem;
-  background: #e53935;
-  border: none;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.clear-orders-btn:hover,
-.back-btn:hover {
-  background: #c62828;
-}
-
-.empty {
+.loading {
   text-align: center;
-  padding: 3rem;
+  margin-top: 60px;
+  font-size: 20px;
+  color: #64748b;
 }

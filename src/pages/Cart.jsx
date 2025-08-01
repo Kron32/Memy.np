@@ -11,6 +11,8 @@ export default function Cart() {
     setCart(storedCart);
   }, []);
 
+  const isLoggedIn = !!localStorage.getItem('authToken');
+
   const updateQuantity = (id, quantity) => {
     const updatedCart = cart.map(item => {
       if (item.id === id) {
@@ -42,6 +44,11 @@ export default function Cart() {
   };
 
   const placeOrder = () => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
     const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
 
     const newOrders = cart.map(item => ({
@@ -58,6 +65,28 @@ export default function Cart() {
     localStorage.setItem('orders', JSON.stringify([...existingOrders, ...newOrders]));
     localStorage.removeItem('cart');
     setCart([]);
+    navigate('/your-order');
+  };
+
+  const handleBuyNow = (item) => {
+    if (!isLoggedIn) {
+      navigate('/login');
+      return;
+    }
+
+    const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const order = {
+      id: item.id,
+      title: item.title,
+      thumbnail: item.thumbnail,
+      quantity: item.quantity,
+      price: item.price,
+      total: item.price * item.quantity,
+      paymentMethod: 'COD',
+      date: new Date().toISOString()
+    };
+
+    localStorage.setItem('orders', JSON.stringify([...existingOrders, order]));
     navigate('/your-order');
   };
 
@@ -92,6 +121,7 @@ export default function Cart() {
               />
             </div>
             <p><strong>Total: Rs. {item.price * item.quantity}</strong></p>
+            <button className="buy-now-btn" onClick={() => handleBuyNow(item)}>Buy Now</button>
           </div>
           <button className="remove-btn" onClick={() => removeItem(item.id)}>Remove</button>
         </div>
